@@ -9,6 +9,8 @@ import {
 } from "../utils/stockService";
 import { ThemeContext } from "../context/ThemeContext";
 
+import ThemeToggle from "../components/ThemeToggle";
+
 // Chart types enum for cleaner code
 const CHART_TYPES = {
   LINE: "line",
@@ -33,29 +35,29 @@ const StockDashboard = () => {
   });
 
   // Get theme from context
-  const { isDarkMode } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   // Define theme colors based on mode
-  const theme = {
-    background: isDarkMode ? "#121212" : "#ffffff",
-    text: isDarkMode ? "#ffffff" : "#333333",
-    primary: "#007bff",
-    secondary: isDarkMode ? "#2a2a2a" : "#f5f5f5",
-    accent: "#00c853",
-    error: "#ff3d00",
-    chart: {
-      line: isDarkMode ? "#4fc3f7" : "#0277bd",
-      candle: {
-        up: "#00c853",
-        down: "#ff3d00",
-        wick: isDarkMode ? "#e0e0e0" : "#333333",
-      },
-      bar: isDarkMode ? "#ba68c8" : "#7b1fa2",
-      pie: ["#f44336", "#2196f3", "#ffeb3b", "#4caf50", "#9c27b0", "#ff9800"],
-      axes: isDarkMode ? "#e0e0e0" : "#333333",
-      grid: isDarkMode ? "#333333" : "#e0e0e0",
-    },
-  };
+  // const theme = {
+  //   background: isDarkMode ? "#121212" : "#ffffff",
+  //   text: isDarkMode ? "#ffffff" : "#333333",
+  //   primary: "#007bff",
+  //   secondary: isDarkMode ? "#2a2a2a" : "#f5f5f5",
+  //   accent: "#00c853",
+  //   error: "#ff3d00",
+  //   chart: {
+  //     line: isDarkMode ? "#4fc3f7" : "#0277bd",
+  //     candle: {
+  //       up: "#00c853",
+  //       down: "#ff3d00",
+  //       wick: isDarkMode ? "#e0e0e0" : "#333333",
+  //     },
+  //     bar: isDarkMode ? "#ba68c8" : "#7b1fa2",
+  //     pie: ["#f44336", "#2196f3", "#ffeb3b", "#4caf50", "#9c27b0", "#ff9800"],
+  //     axes: isDarkMode ? "#e0e0e0" : "#333333",
+  //     grid: isDarkMode ? "#333333" : "#e0e0e0",
+  //   },
+  // };
 
   // Load data when component mounts or selectedCompany changes
   useEffect(() => {
@@ -143,7 +145,7 @@ const StockDashboard = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <DashboardContainer>
         <Header>
           <Title>Stock Market Dashboard</Title>
@@ -158,6 +160,7 @@ const StockDashboard = () => {
               </TimeButton>
             ))}
           </TimeRangeSelector>
+          <ThemeToggle />
         </Header>
 
         <CompanyTabs>
@@ -309,7 +312,7 @@ const StockDashboard = () => {
           )}
         </AnimatePresence>
       </DashboardContainer>
-    </ThemeProvider>
+    </>
   );
 };
 

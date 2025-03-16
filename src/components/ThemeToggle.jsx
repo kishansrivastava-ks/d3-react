@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 const ToggleButton = styled.button`
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
+  /* position: fixed; */
+  /* top: 1rem; */
+  /* right: 18rem; */
   background: ${({ theme }) => theme.primary};
   color: #fff;
   padding: 0.5rem;
