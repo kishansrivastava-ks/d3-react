@@ -1,5 +1,5 @@
 import StockDashboard from "./components/StockDashboard";
-import StockDataDisplay from "./components/StockDataDisplay";
+// import StockDataDisplay from "./components/StockDataDisplay";
 import ThemeToggle from "./components/ThemeToggle";
 import styled from "styled-components";
 
