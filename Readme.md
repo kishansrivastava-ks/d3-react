@@ -14,7 +14,7 @@ This project is a **dynamic stock market data visualization dashboard** built us
 - **Dark/Light Mode**: Theme toggling with persistent storage
 - **Stock Data Input**: Users can manually add stock values (real time chart updates with smooth transitions)
 - **Modular & Clean Code**: Organized structure with reusable components
-- **Full responsive for mobile screen
+- **Fully responsive for mobile screen**
 
 ## 🛠️ Tech Stack
 
