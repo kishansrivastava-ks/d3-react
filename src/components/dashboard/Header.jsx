@@ -27,6 +27,12 @@ const HeaderContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
 `;
 
 const Title = styled.h1`
@@ -34,11 +40,27 @@ const Title = styled.h1`
   margin: 0;
   font-weight: bold;
   color: ${(props) => props.theme.text};
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const TimeRangeSelector = styled.div`
   display: flex;
   gap: 10px;
+
+  @media (max-width: 480px) {
+    gap: 5px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 const TimeButton = styled.button`
@@ -53,6 +75,13 @@ const TimeButton = styled.button`
 
   &:hover {
     background: ${(props) => (props.active ? props.theme.primary : "#c0c0c0")};
+  }
+
+  @media (max-width: 480px) {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 40px;
   }
 `;
 

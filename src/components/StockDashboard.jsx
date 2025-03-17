@@ -6,6 +6,7 @@ import {
   getStockData,
   addStockData,
   deleteStockData,
+  generateLiveData,
 } from "../utils/stockService";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -251,6 +252,10 @@ const DashboardContainer = styled.div`
   color: ${(props) => props.theme.text};
   transition: all 0.3s ease;
   min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const LoadingOverlay = styled(motion.div)`
@@ -296,6 +301,10 @@ const ChartWrapper = styled.div`
   padding: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const FormSection = styled.div`
@@ -305,6 +314,10 @@ const FormSection = styled.div`
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
 `;
 
 const FormTitle = styled.h3`
@@ -317,6 +330,14 @@ const Form = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const InputGroup = styled.div`
@@ -336,6 +357,7 @@ const Input = styled.input`
   border-radius: 5px;
   background: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text};
+  width: 100%;
 
   &:focus {
     outline: none;
@@ -349,6 +371,11 @@ const ButtonGroup = styled.div`
   gap: 10px;
   grid-column: 1 / -1;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 const ActionButton = styled.button`
@@ -372,6 +399,10 @@ const ActionButton = styled.button`
   &:active {
     transform: translateY(0);
     box-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 

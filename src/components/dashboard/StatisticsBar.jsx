@@ -42,6 +42,16 @@ const StatisticsBarContainer = styled.div`
   background-color: ${(props) => props.theme.secondary};
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 15px 5px;
+    justify-content: space-around;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 8px;
+  }
 `;
 
 const StatItem = styled.div`
@@ -56,15 +66,32 @@ const StatItem = styled.div`
         ? props.theme.chart.candle.up
         : props.theme.chart.candle.down};
     `}
+
+  @media (max-width: 768px) {
+    width: 45%;
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 480px) {
+    width: 49%;
+  }
 `;
 
 const StatLabel = styled.span`
   font-size: 0.8rem;
   margin-bottom: 5px;
   opacity: 0.7;
-`;
 
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+`;
 const StatValue = styled.span`
   font-size: 1.1rem;
   font-weight: bold;
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+  }
 `;

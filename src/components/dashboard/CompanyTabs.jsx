@@ -30,6 +30,7 @@ const CompanyTabsContainer = styled.div`
   margin-bottom: 20px;
   overflow-x: auto;
   padding-bottom: 5px;
+  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 
   &::-webkit-scrollbar {
     height: 5px;
@@ -43,6 +44,11 @@ const CompanyTabsContainer = styled.div`
   &::-webkit-scrollbar-thumb {
     background: ${(props) => props.theme.primary};
     border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 8px;
+    padding-bottom: 10px; /* Slightly more space for touch scrolling */
   }
 `;
 
@@ -61,5 +67,15 @@ const CompanyTab = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 12px;
+    border-radius: 6px;
   }
 `;
