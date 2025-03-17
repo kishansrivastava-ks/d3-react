@@ -19,7 +19,7 @@ function App() {
       {/* <StockDataDisplay symbol="TSLA" /> */}
       {/* <StockDataDisplay symbol="AMZN" /> */}
       <StockDashboard />
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
     </Container>
   );
 }

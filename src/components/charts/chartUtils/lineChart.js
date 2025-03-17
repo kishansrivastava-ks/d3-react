@@ -7,7 +7,8 @@ export const renderLineChart = (
   height,
   xScale,
   tooltip,
-  theme
+  theme,
+  chartElement
 ) => {
   // Y scale
   const yScale = d3
@@ -100,11 +101,15 @@ export const renderLineChart = (
         .attr("r", 8)
         .style("opacity", 1);
 
+      // 🔴🔴 TEST
+      const svgRect = chartElement.getBoundingClientRect();
       // Show tooltip
       tooltip
         .style("opacity", 1)
-        .style("left", event.pageX + 10 + "px")
-        .style("top", event.pageY - 20 + "px").html(`
+        // .style("left", event.pageX + 10 + "px")
+        // .style("top", event.pageY - 20 + "px")
+        .style("left", event.pageX - svgRect.left + 10 + "px")
+        .style("top", event.pageY - svgRect.top - 20 + "px").html(`
             <strong>Date:</strong> ${d.date.toLocaleDateString()}<br>
             <strong>Open:</strong> $${d.open.toFixed(2)}<br>
             <strong>High:</strong> $${d.high.toFixed(2)}<br>

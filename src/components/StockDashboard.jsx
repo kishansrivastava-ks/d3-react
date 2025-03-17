@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,7 +10,7 @@ import {
 } from "../utils/stockService";
 import { ThemeContext } from "../context/ThemeContext";
 
-import ThemeToggle from "../components/ThemeToggle";
+import ThemeToggle from "./ThemeToggle";
 import { StockChart } from "./charts/StockChart";
 import Header from "./dashboard/Header";
 import CompanyTabs from "./dashboard/CompanyTabs";
@@ -40,6 +40,8 @@ const StockDashboard = () => {
     volume: "",
   });
 
+  const timeoutRef = useRef(null);
+
   // Get theme from context
   const { theme } = useContext(ThemeContext);
 
@@ -53,6 +55,28 @@ const StockDashboard = () => {
       setIsLoading(false);
     }, 500);
   }, [selectedCompany, timeRange]);
+
+  useEffect(() => {
+    // Clear any existing timeout when the effect runs again
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Set a new timeout and store its ID
+    timeoutRef.current = setTimeout(() => {
+      const newData = generateLiveData(selectedCompany);
+      if (newData) {
+        setData((prevData) => [...prevData, newData]);
+      }
+    }, 5000);
+
+    // Clean up on unmount or before the effect runs again
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [selectedCompany, data]);
 
   // Handle adding new data point
   const handleAddData = () => {

@@ -102,6 +102,17 @@ export const StockChart = ({ data, chartType, theme }) => {
     // Render the appropriate chart based on type
     switch (chartType) {
       case CHART_TYPES.LINE:
+        // 🔴🔴 TEST
+        // Add clipping path definition
+        svg
+          .append("defs")
+          .append("clipPath")
+          .attr("id", "chart-area")
+          .append("rect")
+          .attr("width", width)
+          .attr("height", height)
+          .attr("x", 0)
+          .attr("y", 0);
         renderLineChart(
           svg,
           formattedData,
@@ -109,7 +120,8 @@ export const StockChart = ({ data, chartType, theme }) => {
           height,
           xScale,
           tooltip,
-          theme
+          theme,
+          chartRef.current
         );
         break;
       case CHART_TYPES.CANDLESTICK:
@@ -145,7 +157,8 @@ export const StockChart = ({ data, chartType, theme }) => {
           height,
           xScale,
           tooltip,
-          theme
+          theme,
+          chartRef.current
         );
     }
 
@@ -185,13 +198,39 @@ export const StockChart = ({ data, chartType, theme }) => {
           );
 
           // Update chart elements based on chart type
+
           if (chartType === CHART_TYPES.LINE) {
+            // Update path for the line --TEST
+            const linePath = svg.selectAll(".line").attr(
+              "d",
+              d3
+                .line()
+                .x((d) => newXScale(d.date))
+                .y((d) => d.yScale(d.close))
+            );
+
+            // Reset the stroke animation to ensure the line extends fully --TEST
+            linePath
+              .attr("stroke-dasharray", null)
+              .attr("stroke-dashoffset", null);
+
             svg.selectAll(".line").attr(
               "d",
               d3
                 .line()
                 .x((d) => newXScale(d.date))
                 .y((d) => d.yScale(d.close))
+            );
+
+            // 🔴🔴 TEST
+            svg.selectAll(".area").attr(
+              "d",
+              d3
+                .area()
+                .x((d) => newXScale(d.date))
+                .y0(height)
+                .y1((d) => d.yScale(d.close))
+                .curve(d3.curveMonotoneX)
             );
 
             svg.selectAll(".dot").attr("cx", (d) => newXScale(d.date));
@@ -213,7 +252,8 @@ export const StockChart = ({ data, chartType, theme }) => {
               .attr("x", (d) => newXScale(d.date) - barWidth / 2)
               .attr("width", barWidth);
           }
-        });
+        })
+        .touchable(true);
 
       // Add zoom behavior to SVG
       svg.call(zoom);
