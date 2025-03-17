@@ -44,8 +44,8 @@ This project is a **dynamic stock market data visualization dashboard** built us
  ├── /styles
  │    ├── theme.js (Defines theme colors & chart styles)
  │    ├── GlobalStyles.js (to define the global styles)
- ├── App.jsx (Entry point for the app)
- ├── main.jsx (Initializes React Query & ThemeProvider)
+ ├── App.jsx
+ ├── main.jsx
 ```
 
 ## 🔧 Installation & Running Locally
