@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { getStockData, generateLiveData } from "../utils/stockService";
+import { getStockData, generateLiveData } from "../../utils/stockService";
 import { ArrowUpCircle, ArrowDownCircle, RefreshCw } from "lucide-react";
 
 // Styled Components

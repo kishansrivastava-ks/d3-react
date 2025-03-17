@@ -6,10 +6,10 @@ import {
   getStockData,
   addStockData,
   deleteStockData,
-} from "../utils/stockService";
-import { ThemeContext } from "../context/ThemeContext";
+} from "../../utils/stockService";
+import { ThemeContext } from "../../context/ThemeContext";
 
-import ThemeToggle from "../components/ThemeToggle";
+import ThemeToggle from "../ThemeToggle";
 
 // Chart types enum for cleaner code
 const CHART_TYPES = {
